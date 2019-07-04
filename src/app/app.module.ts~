@@ -1,0 +1,71 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { CreateUserComponent } from './create-user/create-user.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { UserLoginComponent } from './user-login/user-login.component';
+import { UserRegisterComponent } from './user-register/user-register.component';
+import { FormsModule } from '@angular/forms';
+import { JwtModule } from '@auth0/angular-jwt';
+import { HeaderInterceptor } from './interceptor/header.interceptor';
+import { RefreshTokenInterceptor } from './interceptor/refresh.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { UserLogoutComponent } from './user-logout/user-logout.component';
+
+
+export function  tokenGetter() {
+    return     localStorage.getItem('access_token');
+}
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    CreateUserComponent,
+    UserDetailsComponent,
+    UserListComponent,
+    UserLoginComponent,
+    UserRegisterComponent,
+    UserLogoutComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    AppRoutingModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['localhost:8080'],
+        blacklistedRoutes: ['http://localhost:8080/auth/login']
+      }
+    })
+  ],
+  providers: [
+     {
+        provide: HTTP_INTERCEPTORS,
+        useClass: HeaderInterceptor,
+        multi: true
+     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      // этим будем соответственно рефрешить
+      useClass: RefreshTokenInterceptor,
+      multi: true
+    }
+
+  ],
+  bootstrap: [AppComponent],
+  exports: [
+    HttpClientModule
+  ]
+})
+export class AppModule {
+
+
+   
+
+
+ }

@@ -1,0 +1,17 @@
+
+<div class="col-md-8 col-md-offset-2">
+    <h1>Logout form's Main</h1>
+</div>
+<div class="container" style="margin-top: 60px">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h2 class="page-header">Logout Form Demo</h2>
+              <form (ngSubmit)="onSubmit()">
+           
+            
+
+                <button type="submit" class="btn btn-success">Logout</button>
+              </form>
+        </div>
+    </div>
+</div>

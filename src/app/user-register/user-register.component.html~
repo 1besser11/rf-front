@@ -1,0 +1,37 @@
+
+
+<div class="container" style="margin-top: 60px">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h2 class="page-header" i18n="@@regTitle">Registration Form Demo</h2>
+              <form (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <label for="name">First Name</label>
+                  <input type="text" class="form-control" id="firstName" required [(ngModel)]="user.firstName" [value]='user.firstName' name="firstName">
+                </div>
+
+                <div class="form-group">
+                  <label for="name">First Name</label>
+                  <input type="text" class="form-control" id="surname" required [(ngModel)]="user.surname" name="surname"  [value]='user.firstName'>
+                </div>
+                <div class="form-group">
+                  <label for="name">login</label>
+                  <input type="text" class="form-control" id="login" required [(ngModel)]="user.login" name="login">
+                </div>
+
+
+                <div class="form-group">
+                  <label for="name">password</label>
+                  <input type="text" class="form-control" id="password" required [(ngModel)]="user.password" name="password">
+                </div>
+
+                <div class="form-group">
+                  <label for="name">confirmPassword</label>
+                  <input type="text" class="form-control" id="confirmPassword" required [(ngModel)]="user.confirmPassword" name="confirmPassword">
+                </div>
+
+                <button type="submit" class="btn btn-success">Submit</button>
+              </form>
+        </div>
+    </div>
+</div>
